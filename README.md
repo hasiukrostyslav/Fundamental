@@ -45,7 +45,7 @@ npm run compile
 Each page loads `main.js` plus its own script (for example `home.js`) as an ES module. When one file imports another, write the import with a `.js` extension, because that is the file the browser loads:
 
 ```ts
-import { formatPrice } from './utils.js';
+import { formatPrice } from "./utils.js";
 ```
 
 ### Generated files
@@ -54,18 +54,18 @@ The `dist` folder is generated, so it is not committed to Git. Edit the files in
 
 ## Scripts
 
-| Script                    | What it does                                                                        |
-| ------------------------- | ----------------------------------------------------------------------------------- |
-| `npm run dev`             | Compiles everything, then watches for changes and serves the site                   |
-| `npm run build`           | Compiles everything and puts the finished site in the `public` folder               |
-| `npm run compile`         | Compiles styles and scripts once                                                    |
-| `npm run compile:styles`  | Compiles SASS only                                                                  |
-| `npm run compile:scripts` | Compiles TypeScript only                                                            |
-| `npm run watch`           | Recompiles styles and scripts on every change, without a server                     |
-| `npm run serve`           | Serves the site and reloads the browser on changes, without compiling               |
-| `npm run lint`            | Checks scripts and styles (runs both lint scripts below)                            |
-| `npm run lint:scripts`    | Compiles TypeScript, then checks the generated `.js` files in `dist/js` with ESLint |
-| `npm run lint:styles`     | Checks every `.scss` file in `src/scss` with Stylelint                              |
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Compiles everything, then watches for changes and serves the site |
+| `npm run build` | Same as `npm run compile` |
+| `npm run compile` | Compiles styles and scripts once |
+| `npm run compile:styles` | Compiles SASS only |
+| `npm run compile:scripts` | Compiles TypeScript only |
+| `npm run watch` | Recompiles styles and scripts on every change, without a server |
+| `npm run serve` | Serves the site and reloads the browser on changes, without compiling |
+| `npm run lint` | Checks scripts and styles (runs both lint scripts below) |
+| `npm run lint:scripts` | Compiles TypeScript, then checks the generated `.js` files in `dist/js` with ESLint |
+| `npm run lint:styles` | Checks every `.scss` file in `src/scss` with Stylelint |
 
 ## Linting
 
@@ -74,7 +74,7 @@ The `dist` folder is generated, so it is not committed to Git. Edit the files in
 
 ## Deployment
 
-`npm run build` copies the pages, assets and compiled files into `public`, keeping the `src` and `dist` folders inside it, so all links still work. The site is deployed to Vercel with the settings in `vercel.json`: install with `npm install`, build with `npm run build`, publish the `public` folder and redirect `/` to `/src/index.html`.
+The site is deployed to Vercel with the settings in `vercel.json`: install with `npm install`, build with `npm run build`, publish the project folder (the pages in `src` and the compiled files in `dist`) and redirect `/` to `/src/index.html`.
 
 ## Project structure
 
