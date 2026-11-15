@@ -11,7 +11,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "build": "npm run compile && node scripts/build-site.mjs",
+    "build": "npm run compile",
     "compile": "npm run compile:styles && npm run compile:scripts",
     "compile:styles": "sass --no-source-map src/scss:dist/css",
     "compile:scripts": "tsc",
