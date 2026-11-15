@@ -1,0 +1,82 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-top: $spacing-5xl;
+
+  &__pages {
+    display: flex;
+    grid-column: 2;
+    gap: $spacing-md;
+  }
+
+  &__page {
+    @include flex-center;
+
+    min-width: 41px;
+    height: $control-height;
+    font-size: $font-size-caption;
+    font-weight: $font-weight-bold;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &--active,
+    &--active:hover {
+      color: $color-white;
+      background-color: $color-primary;
+    }
+  }
+
+  &__prev {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__next {
+    grid-column: 3;
+    justify-self: end;
+  }
+
+  &__prev,
+  &__next {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    height: $control-height;
+    font-size: $font-size-badge;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    border: $border-width solid $color-primary;
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: $color-grey-lighter;
+    }
+
+    img {
+      width: 8px;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.4;
+    }
+
+    &:disabled:hover {
+      background-color: transparent;
+    }
+  }
+}

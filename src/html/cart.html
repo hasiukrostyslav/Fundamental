@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="../../dist/css/main.css" />
+    <script type="module" src="../../dist/js/main.js"></script>
+    <script type="module" src="../../dist/js/cart.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__top">
+        <button class="header__menu-toggle" type="button">
+          <span class="header__menu-icon"></span>
+        </button>
+        <ul class="header__socials">
+          <li>
+            <a class="header__icon-link" href="https://www.facebook.com">
+              <img class="header__social-icon" src="../assets/icons/facebook.svg" alt="Facebook" />
+            </a>
+          </li>
+          <li>
+            <a class="header__icon-link" href="https://www.twitter.com">
+              <img class="header__social-icon" src="../assets/icons/twitter.svg" alt="Twitter" />
+            </a>
+          </li>
+          <li>
+            <a class="header__icon-link" href="https://www.instagram.com">
+              <img class="header__social-icon" src="../assets/icons/instagram.svg" alt="Instagram" />
+            </a>
+          </li>
+        </ul>
+
+        <a class="header__logo" href="../index.html">
+          <img class="header__logo-icon" src="../assets/icons/logo.svg" alt="" />
+          <span>Best Shop</span>
+        </a>
+
+        <div class="header__actions">
+          <button class="header__icon-link" type="button">
+            <img class="header__action-icon" src="../assets/icons/user.svg" alt="Log in" />
+          </button>
+          <a class="header__icon-link" href="cart.html">
+            <img class="header__action-icon" src="../assets/icons/shopping-cart.svg" alt="Cart" />
+            <span class="header__cart-count">3</span>
+          </a>
+        </div>
+      </div>
+
+      <nav class="header__nav" aria-label="Main navigation">
+        <ul class="header__nav-list">
+          <li><a class="header__nav-link" href="../index.html">Home</a></li>
+          <li>
+            <a class="header__nav-link header__nav-link--dropdown" href="catalog.html">Catalog</a>
+          </li>
+          <li><a class="header__nav-link" href="about.html">About Us</a></li>
+          <li><a class="header__nav-link" href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <dialog class="login" id="login-dialog">
+      <form class="login__form" method="dialog">
+        <button class="login__close" type="submit" value="cancel">
+          &times;
+        </button>
+        <div class="login__field">
+          <label class="login__label" for="login-email">Email address *</label>
+          <input
+            class="form-control form-control--accent"
+            id="login-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="login__field">
+          <label class="login__label" for="login-password">Password *</label>
+          <div class="login__password">
+            <input
+              class="form-control form-control--accent"
+              id="login-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+            <button class="login__toggle" type="button">
+              <img src="../assets/icons/eye.svg" alt="Show password" />
+            </button>
+          </div>
+        </div>
+        <div class="login__options">
+          <label class="checkbox login__remember">
+            <input class="checkbox__input" type="checkbox" name="remember" />
+            Remember me
+          </label>
+          <a class="login__forgot" href="#">Forgot Your Password?</a>
+        </div>
+        <button class="button button--compact login__submit" type="submit" value="login">
+          Log In
+        </button>
+      </form>
+    </dialog>
+
+    <main>
+      <section class="page-banner page-banner--compact">
+        <img class="page-banner__image" src="../assets/img/card/banner.jpg" alt="" />
+        <h1 class="page-banner__title">My Cart</h1>
+      </section>
+
+      <section class="section cart">
+        <p class="cart__message"></p>
+        <table class="cart__table">
+          <thead class="cart__head">
+            <tr>
+              <th class="cart__heading" scope="col">Image</th>
+              <th class="cart__heading" scope="col">Product Name</th>
+              <th class="cart__heading" scope="col">Price</th>
+              <th class="cart__heading" scope="col">Quantity</th>
+              <th class="cart__heading" scope="col">Total</th>
+              <th class="cart__heading" scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody class="cart__body"></tbody>
+        </table>
+
+        <div class="cart__footer">
+          <div class="cart__actions">
+            <a class="button cart__action" href="catalog.html">Continue Shopping</a>
+            <button class="button cart__action cart__clear" type="button">Clear Shopping Cart</button>
+          </div>
+
+          <section class="cart-summary">
+            <p class="cart-summary__row">
+              <span>Sub Total</span>
+              <span class="cart-summary__subtotal">$0</span>
+            </p>
+            <p class="cart-summary__row cart-summary__row--hidden">
+              <span>Discount (10%)</span>
+              <span class="cart-summary__discount">-$0</span>
+            </p>
+            <p class="cart-summary__row">
+              <span>Shipping</span>
+              <span class="cart-summary__shipping">$0</span>
+            </p>
+            <p class="cart-summary__row cart-summary__row--total">
+              <span>Total</span>
+              <span class="cart-summary__total">$0</span>
+            </p>
+            <button class="button cart-summary__checkout" type="button">Checkout</button>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <section class="benefits">
+        <div class="benefits__container">
+          <h2 class="benefits__title" id="benefits-title">Our Benefits</h2>
+          <ul class="benefits__list">
+            <li class="benefits__item">
+              <img class="benefits__icon" src="../assets/icons/plane-globe.png" alt="" />
+              <p class="benefits__text">Velit nisl sodales eget donec quis. volutpat orci.</p>
+            </li>
+            <li class="benefits__item">
+              <img class="benefits__icon" src="../assets/icons/truck.png" alt="" />
+              <p class="benefits__text">Dolor eu varius. Morbi fermentum velit nisl.</p>
+            </li>
+            <li class="benefits__item">
+              <img class="benefits__icon" src="../assets/icons/coins.png" alt="" />
+              <p class="benefits__text">Malesuada fames ac ante ipsum primis in faucibus.</p>
+            </li>
+            <li class="benefits__item">
+              <img class="benefits__icon" src="../assets/icons/graduation-cap.png" alt="" />
+              <p class="benefits__text">Nisl sodales eget donec quis. volutpat orci.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="footer__main">
+        <div class="footer__info">
+          <nav class="footer__links" aria-label="Footer navigation">
+            <div>
+              <h3 class="footer__heading"><a class="footer__link" href="about.html">About Us</a></h3>
+              <ul class="footer__list">
+                <li><a class="footer__link" href="#">Organisation</a></li>
+                <li><a class="footer__link" href="#">Partners</a></li>
+                <li><a class="footer__link" href="#">Clients</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="footer__heading">Interesting Links</h3>
+              <ul class="footer__list">
+                <li><a class="footer__link" href="#">Photo Gallery</a></li>
+                <li><a class="footer__link" href="#">Our Team</a></li>
+                <li><a class="footer__link" href="#">Socials</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="footer__heading">Achievements</h3>
+              <ul class="footer__list">
+                <li><a class="footer__link" href="#">Winning Awards</a></li>
+                <li><a class="footer__link" href="#">Press</a></li>
+                <li><a class="footer__link" href="#">Our Amazing Clients</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="footer__shipping">
+            <h3 class="footer__heading">Shipping Information</h3>
+            <p class="footer__text">
+              Nulla eleifend pulvinar purus, molestie euismod odio imperdiet ac.
+              Ut sit amet erat nec nibh rhoncus varius in non lorem. Donec
+              interdum, lectus in convallis pulvinar, enim elit porta sapien, vel
+              finibus erat felis sed neque. Etiam aliquet neque sagittis erat
+              tincidunt aliquam.
+            </p>
+          </div>
+        </div>
+
+        <div class="footer__contact">
+          <h3 class="footer__heading">
+            <a class="footer__link" href="contact.html">Contact Us</a>
+          </h3>
+          <p class="footer__text">
+            Bendum dolor eu varius. Morbi fermentum velitsodales egetonec.
+            volutpat orci. Sed ipsum felis, tristique egestas et, convallis ac
+            velitn consequat nec luctus.
+          </p>
+          <ul class="footer__contacts">
+            <li class="footer__contact-item">
+              <img class="footer__contact-icon" src="../assets/icons/phone-pink.svg" alt="" />
+              <a class="footer__link" href="tel:+632366322">Phone: (+63) 236 6322</a>
+            </li>
+            <li class="footer__contact-item">
+              <img class="footer__contact-icon" src="../assets/icons/mail-pink.svg" alt="" />
+              <a class="footer__link" href="mailto:public@news.com">public@news.com</a>
+            </li>
+            <li class="footer__contact-item">
+              <img class="footer__contact-icon" src="../assets/icons/clock-pink.svg" alt="" />
+              <p>Mon - Fri: 10am - 6pm<br />Sat - Sun: 10am - 6pm</p>
+            </li>
+            <li class="footer__contact-item">
+              <img class="footer__contact-icon" src="../assets/icons/location-pink.svg" alt="" />
+              <address>639 Jade Valley,<br />Washington Dc</address>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footer__copyright">&copy; Copyright 2025</p>
+    </footer>
+  </body>
+</html>

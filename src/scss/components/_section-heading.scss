@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section-heading {
+  margin-bottom: $spacing-4xl;
+  text-align: center;
+
+  @include from($breakpoint-tablet) {
+    margin-bottom: $spacing-5xl;
+  }
+
+  &__title {
+    @include heading($font-size-heading-mobile, $font-size-heading);
+  }
+
+  &__subtitle {
+    margin-top: $spacing-sm;
+    font-size: $font-size-body;
+    color: $color-grey-dark;
+  }
+
+  &--underlined &__title {
+    display: inline-block;
+    padding-bottom: $spacing-sm;
+    border-bottom: $border-width solid $color-primary;
+  }
+
+  &--small &__title {
+    font-size: $font-size-title-sm;
+    font-weight: $font-weight-bold;
+
+    @include from($breakpoint-tablet) {
+      font-size: $font-size-title;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use '../abstracts/variables' as *;
+
+.dropdown {
+  position: relative;
+
+  &__button {
+    padding-right: $spacing-3xl;
+    color: $color-grey;
+    text-align: left;
+    cursor: pointer;
+    background: $color-white url('../../src/assets/icons/chevron-down.svg') no-repeat right $spacing-lg center;
+    background-size: 12px 8px;
+  }
+
+  &__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    display: none;
+    width: 100%;
+    padding: $spacing-xs 0;
+    background-color: $color-white;
+    border: $border-width solid $color-grey-light;
+    box-shadow: $shadow-thumb;
+  }
+
+  &:hover &__menu,
+  &:focus-within &__menu {
+    display: block;
+  }
+
+  &__option {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-small;
+    text-align: left;
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: $color-grey-lighter;
+    }
+
+    &--active,
+    &--active:hover {
+      color: $color-white;
+      background-color: $color-primary;
+    }
+  }
+
+  &--selected &__button {
+    color: $color-black;
+    border-color: $color-primary;
+  }
+}

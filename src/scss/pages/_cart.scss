@@ -1,0 +1,250 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+.cart {
+  @include from($breakpoint-tablet) {
+    padding-top: $spacing-7xl;
+  }
+
+  &__table {
+    display: block;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: $font-family-system;
+    font-size: $font-size-button;
+    font-weight: $font-weight-bold;
+
+    @include from($breakpoint-tablet) {
+      display: table;
+    }
+  }
+
+  &__body {
+    display: block;
+
+    @include from($breakpoint-tablet) {
+      display: table-row-group;
+    }
+  }
+
+  &__head {
+    display: none;
+    color: $color-white;
+    background-color: $color-grey-dark;
+
+    @include from($breakpoint-tablet) {
+      display: table-header-group;
+    }
+  }
+
+  &__heading {
+    @extend %uppercase-label;
+
+    padding: $spacing-xl $spacing-md;
+    font-size: $font-size-button;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: $spacing-sm $spacing-lg;
+    align-items: center;
+    padding-top: $spacing-lg;
+    padding-bottom: $spacing-lg;
+    border-bottom: $border-width solid $color-primary;
+
+    @include from($breakpoint-tablet) {
+      display: table-row;
+    }
+  }
+
+  &__cell {
+    padding: 0;
+    text-align: center;
+
+    @include from($breakpoint-tablet) {
+      padding: $spacing-xl $spacing-md;
+    }
+
+    &--image {
+      grid-row: span 3;
+      text-align: left;
+    }
+
+    &--name {
+      grid-column: 2 / -1;
+      text-align: left;
+
+      @include from($breakpoint-tablet) {
+        text-align: center;
+      }
+    }
+
+    &--price {
+      display: none;
+
+      @include from($breakpoint-tablet) {
+        display: table-cell;
+      }
+    }
+
+    &--price,
+    &--total {
+      font-family: $font-family-base;
+      font-size: $font-size-body;
+    }
+
+    &--quantity {
+      justify-self: start;
+    }
+
+    &--total {
+      grid-column: 2;
+      text-align: left;
+
+      @include from($breakpoint-tablet) {
+        text-align: center;
+      }
+    }
+
+    &--delete {
+      grid-column: 3;
+      grid-row: 2 / span 2;
+    }
+  }
+
+  &__image {
+    width: 80px;
+    height: 96px;
+    object-fit: contain;
+  }
+
+  &__delete {
+    display: inline-flex;
+    padding: $spacing-xs;
+    transition: opacity $transition-base;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    img {
+      width: 18px;
+      height: 20px;
+    }
+  }
+
+  &__message {
+    display: none;
+    padding: $spacing-4xl 0;
+    font-size: $font-size-subtitle;
+    text-align: center;
+
+    a {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__options {
+    display: block;
+    margin-top: $spacing-xs;
+    font-size: $font-size-small;
+    color: $color-grey;
+  }
+
+  &__footer {
+    display: grid;
+    gap: $spacing-4xl;
+    align-items: start;
+    margin-top: $spacing-5xl;
+
+    @include from($breakpoint-desktop) {
+      grid-template-columns: 1fr 571px;
+      margin-top: $spacing-6xl;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xl;
+  }
+
+  &__action {
+    @extend %uppercase-label;
+
+    min-width: $button-min-width-lg;
+    font-size: $font-size-caption;
+  }
+
+  &--empty &__message {
+    display: block;
+  }
+
+  &--empty &__table,
+  &--empty &__footer {
+    display: none;
+  }
+}
+
+.cart-summary {
+  display: grid;
+  padding: $spacing-3xl $spacing-2xl;
+  color: $color-white;
+  background-color: $color-grey-dark;
+
+  @include from($breakpoint-tablet) {
+    padding: $spacing-4xl;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: $spacing-lg;
+    padding-bottom: $spacing-lg;
+    font-size: $font-size-body;
+    font-weight: $font-weight-bold;
+
+    & + & {
+      border-top: $border-width solid $color-divider;
+    }
+
+    &--total {
+      font-size: $font-size-subtitle;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__checkout {
+    @extend %uppercase-label;
+
+    justify-self: start;
+    min-width: 229px;
+    min-height: 42px;
+    margin-top: $spacing-2xl;
+  }
+}
+
+.quantity--plain {
+  width: auto;
+  height: auto;
+  gap: $spacing-lg;
+  color: $color-black;
+  border: 0;
+
+  .quantity__button {
+    flex: none;
+    font-family: $font-family-system;
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .quantity__input {
+    font-family: $font-family-system;
+  }
+}

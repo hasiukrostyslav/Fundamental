@@ -1,0 +1,80 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+.offer {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  gap: $spacing-2xl;
+  align-items: center;
+  padding: $spacing-4xl $spacing-2xl;
+  color: $color-white;
+  background-color: $color-grey-dark;
+  box-shadow: $shadow-card;
+
+  @include from($breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: $spacing-4xl $spacing-3xl;
+  }
+
+  @include from($breakpoint-desktop) {
+    grid-template-columns: 600px 1fr;
+    gap: 0;
+    min-height: 407px;
+    padding: 0 $spacing-3xl 0 $spacing-9xl;
+  }
+
+  @include from($breakpoint-laptop) {
+    grid-template-columns: 671px 1fr;
+  }
+
+  &::after {
+    @extend %image-overlay;
+  }
+
+  &__image {
+    @include cover-image;
+
+    z-index: $z-index-background;
+  }
+
+  &__discount {
+    text-align: center;
+
+    @include from($breakpoint-desktop) {
+      justify-self: start;
+    }
+  }
+
+  &__percent {
+    font-size: $font-size-display-mobile;
+    font-weight: $font-weight-black;
+    line-height: 1;
+
+    @include from($breakpoint-desktop) {
+      font-size: $font-size-display;
+      line-height: 1.2;
+    }
+  }
+
+  &__note {
+    margin-top: $spacing-sm;
+    font-size: $font-size-subtitle;
+  }
+
+  &__title {
+    @include heading($font-size-heading-mobile, $font-size-heading);
+  }
+
+  &__text {
+    max-width: 400px;
+    margin: $spacing-3xl 0 $spacing-4xl;
+    font-size: $font-size-body;
+    line-height: $line-height-base;
+  }
+
+  &__button {
+    min-width: $button-min-width;
+  }
+}

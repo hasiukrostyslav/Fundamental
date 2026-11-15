@@ -1,0 +1,141 @@
+@use '../abstracts/variables' as *;
+
+.form {
+  display: grid;
+  gap: $spacing-3xl;
+}
+
+.form-field {
+  display: grid;
+  gap: $spacing-md;
+}
+
+.form-label {
+  font-size: $font-size-body;
+  font-weight: $font-weight-bold;
+  color: $color-grey-dark;
+
+  &__required {
+    color: $color-primary;
+  }
+
+  &--large {
+    font-size: $font-size-button;
+    color: $color-black;
+  }
+}
+
+.form-control {
+  width: 100%;
+  min-height: $control-height;
+  padding: $spacing-sm $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-small;
+  color: $color-black;
+  background-color: $color-white;
+  border: $border-width solid $color-grey-light;
+  border-radius: 0;
+
+  &::placeholder {
+    color: $color-grey;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+  }
+
+  &--accent {
+    border-color: $color-primary;
+  }
+
+  &--large {
+    min-height: 44px;
+  }
+
+  &--error,
+  &--error:focus {
+    border-color: $color-error;
+  }
+}
+
+select.form-control {
+  padding-right: $spacing-3xl;
+  color: $color-grey;
+  appearance: none;
+  cursor: pointer;
+  background: $color-white url('../../src/assets/icons/chevron-down.svg') no-repeat right $spacing-lg center;
+  background-size: 12px 8px;
+}
+
+textarea.form-control {
+  min-height: 117px;
+  resize: vertical;
+}
+
+.checkbox {
+  display: flex;
+  gap: $spacing-lg;
+  align-items: center;
+  font-size: $font-size-small;
+  color: $color-grey;
+  cursor: pointer;
+
+  &__input {
+    width: $checkbox-size;
+    height: $checkbox-size;
+    margin: 0;
+    accent-color: $color-primary;
+    cursor: pointer;
+  }
+}
+
+.star-input {
+  display: inline-flex;
+  gap: $spacing-xs;
+
+  &__radio {
+    display: none;
+  }
+
+  &__star {
+    font-size: $font-size-control;
+    line-height: 1;
+    color: $color-rating;
+    cursor: pointer;
+
+    &::before {
+      content: '\2606';
+    }
+
+    &:hover::before {
+      content: '\2605';
+    }
+  }
+
+  &__radio:checked + &__star::before {
+    content: '\2605';
+  }
+}
+
+.form-error {
+  margin-top: $spacing-xs;
+  font-size: $font-size-badge;
+  color: $color-error;
+}
+
+.form-message {
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+
+  &--success {
+    color: $color-success;
+    border: 1px solid $color-success;
+  }
+
+  &--error {
+    color: $color-error;
+    border: 1px solid $color-error;
+  }
+}

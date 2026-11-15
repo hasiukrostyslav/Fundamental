@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+%image-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+  width: 100%;
+  height: 100%;
+  background-color: $color-overlay;
+}
+
+%body-text {
+  font-size: $font-size-body;
+  line-height: $line-height-base;
+  color: $color-grey-dark;
+}
+
+%uppercase-label {
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}

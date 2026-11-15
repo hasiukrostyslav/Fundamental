@@ -1,0 +1,76 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+.about-intro {
+  display: grid;
+  gap: $spacing-4xl;
+  align-items: center;
+
+  @include from($breakpoint-laptop) {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-5xl;
+  }
+
+  @include from($breakpoint-wide) {
+    grid-template-columns: 1fr 615px;
+  }
+
+  &__title {
+    @include heading($font-size-heading-mobile, $font-size-heading);
+  }
+
+  &__text {
+    max-width: $text-max-width;
+    margin-top: $spacing-2xl;
+
+    @extend %body-text;
+  }
+
+  &__button {
+    min-width: $button-min-width;
+    margin-top: $spacing-4xl;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 615 / 352;
+    object-fit: cover;
+
+    @include from($breakpoint-laptop) {
+      align-self: stretch;
+      height: 100%;
+    }
+  }
+}
+
+.team {
+  display: grid;
+  gap: $spacing-4xl $spacing-3xl;
+
+  @include from($breakpoint-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.team-member {
+  text-align: center;
+
+  &__photo {
+    width: 100%;
+    aspect-ratio: 410 / 340;
+    object-fit: cover;
+  }
+
+  &__name {
+    margin-top: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+    font-size: $font-size-name;
+
+    @extend %uppercase-label;
+  }
+
+  &__role {
+    font-size: $font-size-body;
+  }
+}

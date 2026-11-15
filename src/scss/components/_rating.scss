@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+
+.rating {
+  display: inline-flex;
+  gap: $spacing-xs;
+  font-size: 16px;
+  line-height: 1;
+  color: $color-grey-light;
+
+  &__star::before {
+    content: '\2605';
+  }
+
+  &__star--filled {
+    color: $color-rating;
+  }
+
+  &--small {
+    gap: 2px;
+    font-size: 12px;
+  }
+}

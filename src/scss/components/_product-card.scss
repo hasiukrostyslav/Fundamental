@@ -1,0 +1,95 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4xl $spacing-lg;
+
+  @include from($breakpoint-tablet) {
+    gap: $spacing-4xl $grid-gap;
+  }
+
+  @include from($breakpoint-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &--compact {
+    @include from($breakpoint-tablet) {
+      column-gap: $spacing-md;
+    }
+
+    @include from($breakpoint-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+
+  &__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: $spacing-2xl;
+    background-color: $color-white;
+    box-shadow: $shadow-card;
+    transition: box-shadow $transition-base;
+  }
+
+  &:hover &__media {
+    box-shadow: $shadow-card-hover;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 296 / 400;
+    object-fit: cover;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-badge;
+    font-weight: $font-weight-bold;
+    line-height: 1.3;
+    color: $color-white;
+    text-transform: uppercase;
+    background-color: $color-primary;
+  }
+
+  &__title {
+    flex-grow: 1;
+    max-width: 190px;
+    font-size: $font-size-card-title;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-base;
+    color: $color-black;
+  }
+
+  &__link {
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__price {
+    margin-top: $spacing-lg;
+    font-size: $font-size-card-title;
+    font-weight: $font-weight-bold;
+    color: $color-grey-dark;
+  }
+
+  &__button {
+    margin-top: $spacing-lg;
+  }
+}

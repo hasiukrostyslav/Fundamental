@@ -1,0 +1,277 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-index-header;
+  background-color: $color-white;
+
+  &__top {
+    @include container;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: $spacing-sm;
+    min-height: 72px;
+
+    @include from($breakpoint-tablet) {
+      min-height: 135px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    @include landscape-phone {
+      min-height: 60px;
+      padding-top: $spacing-sm;
+      padding-bottom: $spacing-sm;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: $container-padding;
+      right: $container-padding;
+      background-color: $color-border;
+
+      @include from($breakpoint-tablet) {
+        height: 1px;
+        left: $container-padding-tablet;
+        right: $container-padding-tablet;
+      }
+
+      @include from($breakpoint-desktop) {
+        left: $container-padding-desktop;
+        right: $container-padding-desktop;
+      }
+    }
+  }
+
+  &__menu-toggle {
+    @include flex-center;
+
+    justify-content: flex-start;
+    justify-self: start;
+    width: $spacing-4xl;
+    height: $spacing-4xl;
+
+    @include from($breakpoint-tablet) {
+      display: none;
+    }
+  }
+
+  &__menu-icon,
+  &__menu-icon::before,
+  &__menu-icon::after {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: currentcolor;
+    transition:
+      transform $transition-base,
+      background-color $transition-base;
+  }
+
+  &__menu-icon {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+
+    &::before {
+      top: -6px;
+    }
+
+    &::after {
+      top: 6px;
+    }
+  }
+
+  &--menu-open &__menu-icon {
+    background-color: transparent;
+
+    &::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+
+  &__socials {
+    display: none;
+    align-items: center;
+    gap: 25px;
+
+    @include from($breakpoint-tablet) {
+      display: flex;
+    }
+  }
+
+  &__icon-link {
+    position: relative;
+    display: block;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__social-icon {
+    width: 16px;
+    height: 16px;
+
+    @include from($breakpoint-tablet) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__logo {
+    @include flex-center;
+
+    gap: $spacing-sm;
+    font-size: $font-size-control;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    @include from($breakpoint-tablet) {
+      gap: 13px;
+      font-size: $font-size-title;
+    }
+  }
+
+  &__logo-icon {
+    width: $icon-size;
+    height: $icon-size;
+
+    @include from($breakpoint-tablet) {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+
+    @include from($breakpoint-tablet) {
+      gap: 15px;
+    }
+  }
+
+  &__action-icon {
+    width: $icon-size;
+    height: $icon-size;
+
+    @include from($breakpoint-tablet) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__cart-count {
+    @include flex-center;
+
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    min-width: 18px;
+    height: 18px;
+    padding-left: $spacing-xs;
+    padding-right: $spacing-xs;
+    font-size: $font-size-badge;
+    font-weight: $font-weight-semibold;
+    color: $color-primary;
+    background-color: $color-white;
+    border: $border-width solid $color-primary;
+    border-radius: 18px;
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__nav {
+    @include container;
+
+    display: none;
+
+    @include from($breakpoint-tablet) {
+      @include flex-center;
+
+      min-height: 75px;
+    }
+
+    @include landscape-phone {
+      min-height: 40px;
+    }
+  }
+
+  &--menu-open &__nav {
+    display: block;
+  }
+
+  &__nav-list {
+    display: grid;
+    padding-top: $spacing-sm;
+    padding-bottom: $spacing-sm;
+
+    @include from($breakpoint-tablet) {
+      display: flex;
+      gap: $spacing-3xl;
+      padding-top: 29px;
+      padding-bottom: 24px;
+    }
+
+    @include landscape-phone {
+      padding-top: $spacing-sm;
+      padding-bottom: $spacing-sm;
+    }
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+    font-size: $font-size-control;
+    font-weight: $font-weight-bold;
+    transition: color $transition-fast;
+
+    @include from($breakpoint-tablet) {
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: $font-size-button;
+    }
+
+    &:hover,
+    &--active {
+      color: $color-primary;
+    }
+
+    &--dropdown::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      margin-top: -$spacing-xs;
+      border-right: 1px solid currentcolor;
+      border-bottom: 1px solid currentcolor;
+      transform: rotate(45deg);
+    }
+  }
+}

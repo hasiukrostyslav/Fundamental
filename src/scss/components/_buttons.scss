@@ -1,0 +1,45 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 $spacing-xl;
+  font-size: $font-size-button;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  color: $color-white;
+  text-align: center;
+  background-color: $color-primary;
+  transition: background-color $transition-base;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+
+  &:focus-visible {
+    outline: $border-width solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &--small {
+    min-height: $control-height;
+    padding: 0 $spacing-2xl;
+    font-family: $font-family-system;
+    font-size: $font-size-body;
+
+    @include from($breakpoint-tablet) {
+      min-width: 156px;
+    }
+  }
+
+  &--compact {
+    min-height: $control-height;
+    padding: 0 $spacing-2xl;
+    font-family: $font-family-footer;
+    font-size: $font-size-badge;
+    text-transform: uppercase;
+  }
+}

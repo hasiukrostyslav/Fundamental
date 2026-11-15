@@ -1,0 +1,59 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+.page-banner {
+  @include flex-center;
+
+  position: relative;
+  z-index: 0;
+  flex-direction: column;
+  min-height: 280px;
+  padding: $spacing-4xl $spacing-lg;
+  color: $color-white;
+  text-align: center;
+  background-color: $color-grey-dark;
+
+  @include from($breakpoint-tablet) {
+    min-height: 554px;
+  }
+
+  &::after {
+    @extend %image-overlay;
+  }
+
+  &--compact {
+    min-height: 229px;
+
+    @include from($breakpoint-tablet) {
+      min-height: 229px;
+    }
+
+    &::after {
+      background-color: $color-overlay-strong;
+    }
+  }
+
+  &__image {
+    @include cover-image;
+
+    z-index: $z-index-background;
+  }
+
+  &__title {
+    font-size: $font-size-hero-mobile;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+
+    @include from($breakpoint-tablet) {
+      font-size: $font-size-hero;
+    }
+  }
+
+  &__text {
+    margin-top: $spacing-xl;
+    font-size: $font-size-body;
+    line-height: $line-height-base;
+    color: $color-grey-light;
+  }
+}

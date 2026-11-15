@@ -1,0 +1,328 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+.hero {
+  padding-top: $spacing-4xl;
+  padding-bottom: $section-spacing;
+  background-color: $color-grey-lighter;
+
+  @include from($breakpoint-tablet) {
+    padding-top: $section-spacing-mobile;
+  }
+
+  @include from($breakpoint-desktop) {
+    padding-top: $section-spacing;
+  }
+
+  &__inner {
+    @include container;
+
+    display: grid;
+    align-items: center;
+
+    @include from($breakpoint-desktop) {
+      grid-template-columns: 1fr 766px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+
+    @include from($breakpoint-desktop) {
+      margin-right: -186px;
+    }
+  }
+
+  &__title {
+    @include heading($font-size-hero-mobile, $font-size-hero);
+  }
+
+  &__text {
+    max-width: $text-max-width;
+    margin-top: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+
+    @extend %body-text;
+  }
+
+  &__image {
+    justify-self: center;
+    width: 100%;
+    max-width: 766px;
+    height: auto;
+  }
+}
+
+.promo {
+  @include container;
+
+  position: relative;
+  margin-top: -$spacing-9xl;
+
+  &__inner {
+    display: grid;
+    box-shadow: $shadow-card;
+
+    @include from($breakpoint-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__about {
+    padding: $spacing-4xl $spacing-2xl;
+    background-color: $color-white;
+
+    @include from($breakpoint-tablet) {
+      padding: $spacing-7xl $spacing-7xl;
+    }
+  }
+
+  &__author {
+    display: flex;
+    gap: $spacing-xl;
+    align-items: center;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__avatar {
+    width: 85px;
+    height: 93px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__name {
+    font-size: $font-size-subtitle;
+    font-weight: $font-weight-bold;
+  }
+
+  &__role {
+    margin-top: $spacing-sm;
+    font-size: $font-size-body;
+  }
+
+  &__title {
+    @include heading($font-size-heading-mobile, $font-size-heading);
+
+    max-width: 400px;
+    line-height: 1.5;
+  }
+
+  &__text {
+    max-width: 500px;
+    margin-top: $spacing-3xl;
+
+    @extend %body-text;
+  }
+
+  &__discount {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: $spacing-6xl $spacing-2xl;
+    color: $color-white;
+    background-color: $color-grey-dark;
+    z-index: 0;
+
+    @include from($breakpoint-tablet) {
+      padding: $spacing-6xl $spacing-7xl;
+    }
+
+    &::after {
+      @extend %image-overlay;
+    }
+  }
+
+  &__discount-image {
+    @include cover-image;
+
+    z-index: $z-index-background;
+  }
+
+  &__discount-title {
+    @include heading($font-size-heading-mobile, $font-size-heading);
+  }
+
+  &__discount-text {
+    max-width: 500px;
+    margin-top: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+    font-size: $font-size-body;
+    line-height: $line-height-base;
+  }
+}
+
+.travel {
+  &__slider {
+    position: relative;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $grid-gap;
+
+    @include from($breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include from($breakpoint-desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__arrow {
+    @include flex-center;
+
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: $control-height;
+    height: $control-height;
+    background-color: $color-white;
+    border-radius: 50%;
+    box-shadow: $shadow-thumb;
+    transform: translateY(-50%);
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: $color-grey-light;
+    }
+
+    img {
+      width: 8px;
+    }
+
+    &--prev {
+      left: $spacing-md;
+
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--next {
+      right: $spacing-md;
+    }
+  }
+}
+
+.travel-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 1;
+  overflow: hidden;
+  color: $color-white;
+  z-index: 0;
+  transition: box-shadow $transition-base;
+
+  @include from($breakpoint-tablet) {
+    aspect-ratio: 3 / 4;
+  }
+
+  @include from($breakpoint-desktop) {
+    aspect-ratio: 296 / 600;
+  }
+
+  &::after {
+    @extend %image-overlay;
+  }
+
+  &:nth-child(n + 2) {
+    display: none;
+  }
+
+  @include from($breakpoint-tablet) {
+    &:nth-child(2) {
+      display: flex;
+    }
+  }
+
+  @include from($breakpoint-desktop) {
+    &:nth-child(n + 3) {
+      display: flex;
+    }
+  }
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+  }
+
+  &__image {
+    @include cover-image;
+
+    z-index: $z-index-background;
+    transition: transform $transition-base;
+  }
+
+  &:hover &__image {
+    transform: scale(1.08);
+  }
+
+  &__content {
+    padding: $spacing-4xl;
+  }
+
+  &__title {
+    font-size: $font-size-card-title;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-base;
+  }
+
+  &__text {
+    margin-top: $spacing-xl;
+    font-size: $font-size-card-title;
+    line-height: $line-height-base;
+  }
+}
+
+.testimonials {
+  display: grid;
+  gap: $spacing-xl;
+
+  @include from($breakpoint-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: $spacing-4xl $spacing-2xl;
+  text-align: center;
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+
+  @include from($breakpoint-desktop) {
+    padding: $spacing-4xl;
+  }
+
+  &__avatar {
+    width: 98px;
+    height: 98px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__quote {
+    margin-top: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+    font-size: $font-size-body;
+    line-height: $line-height-base;
+    color: $color-black;
+  }
+
+  &__author {
+    margin-top: auto;
+    font-size: $font-size-body;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+  }
+}

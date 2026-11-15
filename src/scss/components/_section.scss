@@ -1,0 +1,11 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section {
+  @include container;
+  @include section-spacing;
+}
+
+.section + .section {
+  padding-top: 0;
+}

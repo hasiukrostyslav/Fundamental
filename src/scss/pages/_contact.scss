@@ -1,0 +1,53 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.feedback {
+  display: grid;
+  gap: $spacing-4xl;
+  align-items: start;
+
+  @include from($breakpoint-desktop) {
+    grid-template-columns: 627px 1fr;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 627 / 700;
+    object-fit: cover;
+    box-shadow: $shadow-card;
+
+    @include from($breakpoint-desktop) {
+      align-self: stretch;
+      height: 100%;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-subtitle;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+
+    @include from($breakpoint-tablet) {
+      font-size: $font-size-title-sm;
+    }
+  }
+
+  &__text {
+    margin-top: $spacing-3xl;
+    margin-bottom: $spacing-7xl;
+    font-size: $font-size-body;
+  }
+
+  &__form {
+    gap: $spacing-4xl;
+
+    .form-field {
+      gap: $spacing-sm;
+    }
+  }
+
+  &__submit {
+    justify-self: start;
+    margin-top: -16px;
+  }
+}
